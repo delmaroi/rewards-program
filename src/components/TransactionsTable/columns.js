@@ -11,7 +11,7 @@ export const getColumns = () => [
   }),
   columnHelper.accessor((row) => row.customerId, {
     id: "customerId",
-    cell: (info) => info.getValue(),
+    cell: (info) => <span className="hidden">{info.getValue()}</span>,
     header: () => <span className="hidden md:flex">Customer ID</span>,
   }),
   columnHelper.accessor((row) => row.name, {

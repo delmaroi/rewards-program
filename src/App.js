@@ -5,7 +5,7 @@ function App() {
   const { transactions, isLoading } = useTransactions();
 
   return (
-    <div className="container mx-auto sm:px-6 lg:px-8 p-4">
+    <main className="container mx-auto p-4 lg:p-6">
       {isLoading ? (
         <div data-testid="spinner">
           <Spinner />
@@ -21,7 +21,7 @@ function App() {
           <TransactionsTable transactions={transactions} />
         </>
       )}
-    </div>
+    </main>
   );
 }
 

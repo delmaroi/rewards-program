@@ -46,7 +46,7 @@ const TableComponent = (props) => {
         />
       </div>
 
-      <div className="mt-2 inline-block min-w-full align-middle">
+      <div className="py-4 inline-block min-w-full align-middle">
         <table className="min-w-full">
           <thead className="bg-background">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -107,7 +107,7 @@ const TableComponent = (props) => {
               <tr className="justify-center border-b border-gray-300">
                 <td
                   colSpan={table.getHeaderGroups()[0].headers.length}
-                  className="w-full  py-4 text-center text-sm font-medium text-primary"
+                  className="w-full py-4 text-center text-sm font-medium text-primary"
                 >
                   {props.noItems ? props.noItems : "No Items"}
                 </td>
@@ -117,7 +117,7 @@ const TableComponent = (props) => {
         </table>
 
         {table.getPageCount() > 1 && (
-          <div className="mt-4 flex items-center justify-end gap-2">
+          <div className="pt-4 flex items-center justify-end gap-2">
             <button
               className="rounded-full text-xs bg-white p-2 border border-primary hover:bg-background hover:text-black focus:ring-0"
               onClick={() => table.previousPage()}
