@@ -36,29 +36,38 @@ export function calculateRewardPoints(amount) {
   return points;
 }
 
-export function calculateRewards(transactions) {
-  const rewardsByMonth = {};
-
-  transactions.forEach((transaction) => {
+export const calculateRewards = (transactions) => {
+  const rewardsByMonth = transactions.reduce((acc, transaction) => {
     const { customerId, date, amount } = transaction;
     const month = date.slice(0, 7);
-
     const points = calculateRewardPoints(amount);
-    rewardsByMonth[customerId] = rewardsByMonth[customerId] || {};
-    rewardsByMonth[customerId][month] =
-      (rewardsByMonth[customerId][month] || 0) + points;
-  });
-
-  const rewardsByCustomer = {};
-  Object.keys(rewardsByMonth).forEach((customerId) => {
-    rewardsByCustomer[customerId] = {
-      total: 0,
-      byMonth: rewardsByMonth[customerId],
+    const customerRewards = acc[customerId] || {};
+    return {
+      ...acc,
+      [customerId]: {
+        ...customerRewards,
+        [month]: (customerRewards[month] || 0) + points,
+      },
     };
-    Object.values(rewardsByMonth[customerId]).forEach((points) => {
-      rewardsByCustomer[customerId].total += points;
-    });
-  });
+  }, {});
+
+  const rewardsByCustomer = Object.keys(rewardsByMonth).reduce(
+    (acc, customerId) => {
+      const customerRewards = rewardsByMonth[customerId];
+      const totalPoints = Object.values(customerRewards).reduce(
+        (sum, points) => sum + points,
+        0
+      );
+      return {
+        ...acc,
+        [customerId]: {
+          total: totalPoints,
+          byMonth: customerRewards,
+        },
+      };
+    },
+    {}
+  );
 
   return rewardsByCustomer;
-}
+};
