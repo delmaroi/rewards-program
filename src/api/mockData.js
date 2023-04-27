@@ -2,7 +2,7 @@ export const mockTransactions = [
   {
     customerId: 1,
     transactionDate: "2022-01-01",
-    purchaseAmount: 150,
+    purchaseAmount: 120,
     name: "Joey",
   },
   {

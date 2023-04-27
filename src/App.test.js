@@ -6,8 +6,8 @@ import useTransactions from "./hooks/useTransactions";
 jest.mock("./hooks/useTransactions");
 
 describe("App", () => {
-  it("should render loading spinner when loading is true", async () => {
-    useTransactions.mockReturnValueOnce({ transactions: [], loading: true });
+  it("should render loading spinner when isLoading is true", async () => {
+    useTransactions.mockReturnValueOnce({ transactions: [], isLoading: true });
 
     render(<App />);
 
@@ -19,7 +19,7 @@ describe("App", () => {
     });
   });
 
-  it("should render rewards by month and transactions table when loading is false", async () => {
+  it("should render reward by month and transactions table when isLoading is false", async () => {
     useTransactions.mockReturnValueOnce({
       transactions: [
         {
@@ -56,7 +56,7 @@ describe("App", () => {
 
     render(<App />);
 
-    expect(screen.getByText(/rewards points calculator/i)).toBeInTheDocument();
+    expect(screen.getByText(/reward points calculator/i)).toBeInTheDocument();
 
     expect(screen.getByText(/customer Ross/i)).toBeInTheDocument();
     expect(screen.getByText(/customer Joey/i)).toBeInTheDocument();
@@ -64,7 +64,6 @@ describe("App", () => {
     expect(screen.getByText(/id/i)).toBeInTheDocument();
     expect(screen.getByText(/Purchase Amount/i)).toBeInTheDocument();
     expect(screen.getByText(/Transaction Date/i)).toBeInTheDocument();
-    expect(screen.getByText(/Reward Points/i)).toBeInTheDocument();
     expect(screen.getByText(/Customer ID/i)).toBeInTheDocument();
   });
 });

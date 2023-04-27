@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { getTransactions } from "../api/dataService";
-import { calculateRewardPoints } from "../components/Rewards/utils";
+import { calculateRewardPoints } from "../components";
 
 function useTransactions() {
   const [transactions, setTransactions] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchTransactions() {
@@ -18,13 +18,13 @@ function useTransactions() {
       });
 
       setTransactions(updatedData);
-      setLoading(false);
+      setIsLoading(false);
     }
 
     fetchTransactions();
   }, []);
 
-  return { transactions, loading };
+  return { transactions, isLoading };
 }
 
 export default useTransactions;

@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import RewardsByMonth from "./RewardsByMonth";
+import { RewardsPointsByMonth } from "./";
 
-describe("RewardsByMonth", () => {
-  it("renders rewards points by month for each customer", () => {
+describe("RewardsPointsByMonth", () => {
+  it("renders reward points by month for each customer", () => {
     const transactions = [
       {
         id: 1,
@@ -33,7 +33,7 @@ describe("RewardsByMonth", () => {
         name: "Joey",
       },
     ];
-    render(<RewardsByMonth transactions={transactions} />);
+    render(<RewardsPointsByMonth transactions={transactions} />);
 
     expect(screen.getByText("Customer Ross")).toBeInTheDocument();
     expect(screen.getByText("Month 1:")).toBeInTheDocument();

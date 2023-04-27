@@ -90,7 +90,7 @@ const TableComponent = (props) => {
                             key={cell.id}
                             className={clsx(
                               cell.column.columnDef?.meta?.classname,
-                              "py-4 text-sm font-medium "
+                              "py-4 text-sm font-medium px-3"
                             )}
                           >
                             {flexRender(
@@ -119,7 +119,7 @@ const TableComponent = (props) => {
         {table.getPageCount() > 1 && (
           <div className="mt-4 flex items-center justify-end gap-2">
             <button
-              className="rounded-full border-none bg-white p-2 hover:bg-background hover:text-black focus:ring-0"
+              className="rounded-full text-xs bg-white p-2 border border-primary hover:bg-background hover:text-black focus:ring-0"
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
             >
@@ -128,7 +128,7 @@ const TableComponent = (props) => {
             <button
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
-              className="rounded-full border-none bg-white p-2 hover:bg-background hover:text-black focus:ring-0"
+              className="rounded-full text-xs bg-white p-2 border border-primary hover:bg-background hover:text-black focus:ring-0"
             >
               Next
             </button>
@@ -136,8 +136,9 @@ const TableComponent = (props) => {
             <span className="flex items-center gap-2 text-xs">
               <div>Page</div>
               <div className="font-bold">
-                {table.getState().pagination.pageIndex + 1} /{" "}
-                {table.getPageCount()}
+                {`${
+                  table.getState().pagination.pageIndex + 1
+                } / ${table.getPageCount()}`}
               </div>
             </span>
           </div>

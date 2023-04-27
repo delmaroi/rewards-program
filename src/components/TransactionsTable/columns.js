@@ -23,14 +23,14 @@ export const getColumns = () => [
     id: "purchaseAmount",
     enableSorting: true,
     enableColumnFilter: false,
-    cell: (info) => info.getValue().toFixed(2),
+    cell: (info) => `$${info.getValue().toFixed(2)}`,
     header: () => <span className="md:flex">Purchase Amount</span>,
   }),
   columnHelper.accessor((row) => row.rewardPoints, {
     id: "rewardPoints",
     enableSorting: false,
     enableColumnFilter: false,
-    cell: (info) => info.getValue(),
+    cell: (info) => `${info.getValue()} points`,
     header: () => <span className="md:flex">Reward Points</span>,
   }),
 ];

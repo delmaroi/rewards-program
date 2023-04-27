@@ -28,7 +28,7 @@ describe("useTransactions", () => {
     const { result, waitForNextUpdate } = renderHook(() => useTransactions());
 
     expect(result.current.transactions).toEqual([]);
-    expect(result.current.loading).toBe(true);
+    expect(result.current.isLoading).toBe(true);
 
     await waitForNextUpdate();
 
@@ -38,6 +38,6 @@ describe("useTransactions", () => {
         rewardPoints: expect.any(Number),
       }))
     );
-    expect(result.current.loading).toBe(false);
+    expect(result.current.isLoading).toBe(false);
   });
 });
