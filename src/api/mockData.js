@@ -27,7 +27,7 @@ export const mockTransactions = [
   {
     customerId: 1,
     transactionDate: "2022-04-01",
-    purchaseAmount: 77,
+    purchaseAmount: 250,
     name: "Joey",
   },
   {
@@ -39,7 +39,7 @@ export const mockTransactions = [
   {
     customerId: 2,
     transactionDate: "2022-01-05",
-    purchaseAmount: 100,
+    purchaseAmount: 125,
     name: "Ross",
   },
   {
@@ -78,5 +78,17 @@ export const mockTransactions = [
     transactionDate: "2022-05-01",
     purchaseAmount: 0,
     name: "Chandler",
+  },
+  {
+    customerId: 4,
+    transactionDate: "2022-01-01",
+    purchaseAmount: 25,
+    name: "John",
+  },
+  {
+    customerId: 4,
+    transactionDate: "2022-01-15",
+    purchaseAmount: 75,
+    name: "John",
   },
 ];

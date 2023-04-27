@@ -4,7 +4,7 @@ function RewardsByMonth({ transactions }) {
   const rewardsByMonth = getRewardsByMonth(transactions);
 
   return (
-    <div className="py-4  my-4">
+    <div className="py-4 my-4">
       <h2 className="text-base font-semibold leading-6 text-primary pb-4">
         Rewards Points by Month
       </h2>

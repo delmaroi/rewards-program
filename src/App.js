@@ -9,8 +9,11 @@ function App() {
   return (
     <div className="container mx-auto sm:px-6 lg:px-8 p-4">
       {loading ? (
-        <div className="flex items-center justify-center h-screen">
-          <Spinner data-test-id="spinner" />
+        <div
+          className="flex items-center justify-center h-screen"
+          data-testid="spinner"
+        >
+          <Spinner />
         </div>
       ) : (
         <>

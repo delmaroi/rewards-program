@@ -1,10 +1,10 @@
 import { mockTransactions } from "./mockData";
 
 export function getTransactions() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
+      // simulate a random error half the time
       // if (Math.random() < 0.5) {
-      //   // simulate a random error half the time
       //   reject(new Error("Failed to fetch transactions"));
       // } else {
       resolve(mockTransactions);

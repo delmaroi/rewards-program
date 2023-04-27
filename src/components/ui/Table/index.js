@@ -15,14 +15,12 @@ const TableComponent = (props) => {
   const table = useReactTable({
     data,
     columns,
-    pageCount: Math.ceil(data.length / defaultPageSize) ?? -1,
     initialState: {
       pagination: { pageSize: defaultPageSize },
     },
     state: {
       globalFilter,
     },
-
     onGlobalFilterChange: setGlobalFilter,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
