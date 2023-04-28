@@ -17,8 +17,9 @@ To install and run the application locally, follow these steps:
 The application displays a table of transactions and a summary of reward points earned by each customer per month. To use the application:
 
 1. Open your web browser and navigate to `http://localhost:3000`
-2. Review the table of transactions and reward points summary
-3. Use the search bar to filter transactions by customer ID or name
+2. Review Reward Points by Month per customer
+3. Review the table of transactions and reward points summary sorted by date
+4. Use the search bar to filter transactions by customer ID or Name, Transaction Date, Purchase Amount, Reward Points
 
 ## Features
 

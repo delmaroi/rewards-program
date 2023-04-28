@@ -88,7 +88,7 @@ export const mockTransactions = [
   {
     customerId: 4,
     transactionDate: "2022-01-15",
-    purchaseAmount: 75,
+    purchaseAmount: 51,
     name: "John",
   },
 ];

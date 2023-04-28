@@ -13,7 +13,12 @@ export const TransactionsTable = ({ transactions }) => {
 
       <div className="overflow-x-auto sm:-mx-6 lg:-mx-8 pb-8">
         <div className="inline-block md:min-w-full align-middle sm:px-6 lg:px-8">
-          <Table columns={columns} data={transactions} defaultPageSize={10} />
+          <Table
+            columns={columns}
+            data={transactions}
+            defaultPageSize={10}
+            defaultSortColumns="transactionDate"
+          />
         </div>
       </div>
     </>

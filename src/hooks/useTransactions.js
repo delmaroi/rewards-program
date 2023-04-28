@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getTransactions } from "../api/dataService";
 import { calculateRewardPoints } from "../components";
 
-function useTransactions() {
+export const useTransactions = () => {
   const [transactions, setTransactions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -25,6 +25,4 @@ function useTransactions() {
   }, []);
 
   return { transactions, isLoading };
-}
-
-export default useTransactions;
+};

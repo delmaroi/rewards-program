@@ -1,11 +1,11 @@
 import { RewardsPointsByMonth, TransactionsTable, Spinner } from "./components";
-import useTransactions from "./hooks/useTransactions";
+import { useTransactions } from "./hooks/useTransactions";
 
 function App() {
   const { transactions, isLoading } = useTransactions();
 
   return (
-    <main className="container mx-auto p-4 lg:p-6">
+    <div className="container mx-auto p-4 lg:p-6">
       {isLoading ? (
         <div data-testid="spinner">
           <Spinner />
@@ -21,7 +21,7 @@ function App() {
           <TransactionsTable transactions={transactions} />
         </>
       )}
-    </main>
+    </div>
   );
 }
 

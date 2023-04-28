@@ -4,6 +4,12 @@ const POINTS_PER_DOLLAR_OVER_50 = 1;
 export function getRewardsByMonth(transactions) {
   return transactions.reduce(
     (acc, { name, purchaseAmount, transactionDate }) => {
+      // in the specification there is no specific situation what we should display as a month,
+      // whether it is to be the full name of the month or its numerical value.
+      // So I leave the numerical value but in the comment there is a variable that returns the name of the month
+      // const month = new Date(transactionDate).toLocaleString("default", {
+      //   month: "long",
+      // });
       const month = new Date(transactionDate).getMonth() + 1;
       const rewardPoints = calculateRewardPoints(purchaseAmount);
 
@@ -16,6 +22,7 @@ export function getRewardsByMonth(transactions) {
       }
 
       acc[name][month] += rewardPoints;
+
       return acc;
     },
     {}

@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react-hooks";
-import useTransactions from "./useTransactions";
+import { useTransactions } from "./useTransactions";
 import { getTransactions } from "../api/dataService";
 
 jest.mock("../api/dataService", () => ({

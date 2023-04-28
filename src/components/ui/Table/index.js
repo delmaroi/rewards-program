@@ -5,13 +5,19 @@ import {
   flexRender,
   getFilteredRowModel,
   getPaginationRowModel,
+  getSortedRowModel,
 } from "@tanstack/react-table";
 import clsx from "clsx";
 
 const TableComponent = (props) => {
-  const { data, columns, defaultPageSize } = props;
+  const { data, columns, defaultPageSize, defaultSortColumns } = props;
+  const [rowState, setRowState] = useState({ id: "" });
   const [globalFilter, setGlobalFilter] = useState("");
-
+  const [sorting, setSorting] = useState([
+    {
+      id: defaultSortColumns || columns[0].id,
+    },
+  ]);
   const table = useReactTable({
     data,
     columns,
@@ -20,9 +26,12 @@ const TableComponent = (props) => {
     },
     state: {
       globalFilter,
+      sorting,
     },
+    onSortingChange: setSorting,
     onGlobalFilterChange: setGlobalFilter,
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     globalFilterFn: (row, columnId, filterValue) => {
@@ -51,25 +60,23 @@ const TableComponent = (props) => {
           <thead className="bg-background">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <th
-                      key={header.id}
-                      colSpan={header.colSpan}
-                      scope="col"
-                      className="sticky top-0 z-10 bg-opacity-75 px-3 py-4 text-left text-sm font-semibold text-primary backdrop-blur backdrop-filter lg:table-cell"
-                    >
-                      {header.isPlaceholder ? null : (
-                        <div aria-hidden="true">
-                          {flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                        </div>
-                      )}
-                    </th>
-                  );
-                })}
+                {headerGroup.headers.map((header) => (
+                  <th
+                    key={header.id}
+                    colSpan={header.colSpan}
+                    scope="col"
+                    className="sticky top-0 z-10 bg-opacity-75 px-3 py-4 text-left text-sm font-semibold text-primary backdrop-blur backdrop-filter lg:table-cell"
+                  >
+                    {header.isPlaceholder ? null : (
+                      <div aria-hidden="true">
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                      </div>
+                    )}
+                  </th>
+                ))}
               </tr>
             ))}
           </thead>
@@ -78,31 +85,34 @@ const TableComponent = (props) => {
               table
                 .getRowModel()
                 .rows.slice(0, table.getState().pagination.pageSize)
-                .map((row) => {
-                  return (
-                    <tr
-                      key={row.id}
-                      className="whitespace-wrap mb-1 cursor-pointer divide-y divide-gray-200 border-t border-gray-200"
-                    >
-                      {row.getVisibleCells().map((cell) => {
-                        return (
-                          <td
-                            key={cell.id}
-                            className={clsx(
-                              cell.column.columnDef?.meta?.classname,
-                              "py-4 text-sm font-medium px-3"
-                            )}
-                          >
-                            {flexRender(
-                              cell.column.columnDef.cell,
-                              cell.getContext()
-                            )}
-                          </td>
-                        );
-                      })}
-                    </tr>
-                  );
-                })
+                .map((row) => (
+                  <tr
+                    key={row.id}
+                    onMouseEnter={() => setRowState({ id: row.id })}
+                    onMouseLeave={() => setRowState({ id: null })}
+                    className={clsx(
+                      rowState.id === row.id ? "bg-gray-100" : "bg-white",
+                      "whitespace-wrap mb-1 divide-y divide-gray-200 border-t border-gray-200"
+                    )}
+                  >
+                    {row.getVisibleCells().map((cell) => {
+                      return (
+                        <td
+                          key={cell.id}
+                          className={clsx(
+                            cell.column.columnDef?.meta?.classname,
+                            "py-4 text-sm font-medium px-3"
+                          )}
+                        >
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))
             ) : (
               <tr className="justify-center border-b border-gray-300">
                 <td
